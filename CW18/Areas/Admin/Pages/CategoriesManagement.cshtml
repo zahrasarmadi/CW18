@@ -1,10 +1,10 @@
 ﻿@page
 @model CW18.Areas.AdminArea.Pages.CategoriesManagementModel
-@if (TempData["true"] == "false")
+@if (TempData["False"]=="False")
 {
-    <h1>این صفحه مخصوص ادمین است</h1>
+    <h1>لاگین نیستید</h1>
 }
-
+else{
 <a asp-page="AddCategory" class="btn btn-outline-success">اضافه کردن دسته بندی</a>
 <table class="table">
     <thead class="thead-dark">
@@ -30,3 +30,4 @@
         }
     </tbody>
 </table>
+}

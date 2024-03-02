@@ -15,6 +15,8 @@ namespace CW18.Configuration
         public DbSet<Article> Article { get; set; }
         public DbSet<Admin> Admin { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Comment> Comment { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,6 +25,7 @@ namespace CW18.Configuration
             modelBuilder.ApplyConfiguration(new ArticleConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
         }
     }
 }

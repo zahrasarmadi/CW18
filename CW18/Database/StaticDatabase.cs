@@ -4,6 +4,6 @@ namespace CW18.Database;
 
 public static class StaticDatabase
 {
-    public static Reporter Reporter { get; set; }=new Reporter();
-    public static Admin Admin { get; set; }=new Admin();
+    public static Reporter Reporter { get; set; }
+    public static Admin Admin { get; set; }
 }

@@ -33,8 +33,7 @@ namespace CW18.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    ArticleId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,7 +67,7 @@ namespace CW18.Migrations
                     Image = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     ReporterId = table.Column<int>(type: "int", nullable: false),
-                    IsConfrime = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsConfrim = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     VisitCount = table.Column<int>(type: "int", nullable: false)
                 },
@@ -89,6 +88,31 @@ namespace CW18.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ArticleId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<int>(type: "int", nullable: false),
+                    Like = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    DisLike = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    IsConfrim = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_Articles_ArticleId",
+                        column: x => x.ArticleId,
+                        principalTable: "Articles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Articles_CategoryId",
                 table: "Articles",
@@ -98,6 +122,11 @@ namespace CW18.Migrations
                 name: "IX_Articles_ReporterId",
                 table: "Articles",
                 column: "ReporterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ArticleId",
+                table: "Comments",
+                column: "ArticleId");
         }
 
         /// <inheritdoc />
@@ -105,6 +134,9 @@ namespace CW18.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Admins");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Articles");

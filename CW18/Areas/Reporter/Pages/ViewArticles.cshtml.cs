@@ -4,23 +4,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CW18.Areas.ReporterArea.Pages;
-public class ArticlesListModel : PageModel
+
+public class ViewArticlesModel : PageModel
 {
     ArticleRepository articleRepo = new ArticleRepository();
 
     [BindProperty]
-    public List<Article> Articles { get; set; } = new List<Article>();
+    public List<Article> ArticlesList { get; set; } = new List<Article>();
     public void OnGet()
     {
         var articles = articleRepo.GetListArticles();
         foreach (var article in articles)
         {
-            if (article.IsConfrime == true)
+            if (article.IsConfrim == true)
             {
-                Articles.Add(article);
+                ArticlesList.Add(article);
             }
         }
-        TempData["null"] = Articles;
-
     }
 }

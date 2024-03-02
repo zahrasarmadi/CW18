@@ -6,11 +6,18 @@ namespace CW18.Ripository;
 public class AdminRipository
 {
     Context context = new Context();
+    public void ConfrimComment(int id)
+    {
+        var targetComment = context.Comment.FirstOrDefault(a => a.Id == id);
+        targetComment.IsConfrim = true;
+
+        context.SaveChanges();
+    }
 
     public void ConfrimArticle(int id)
     {
         var targetArticle = context.Article.FirstOrDefault(a=>a.Id==id);
-        targetArticle.IsConfrime = true;
+        targetArticle.IsConfrim = true;
 
         context.SaveChanges();
     }

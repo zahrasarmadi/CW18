@@ -1,8 +1,11 @@
 ﻿@page
 @model CW18.Areas.AdminArea.Pages.ConfrimArticlesModel
-
-<div class="card-deck">@* 
-    @if(TempData["null"]!=null){ *@
+@if (TempData["False"]=="False")
+{
+    <h1>لاگین نیستید</h1>
+}
+else{
+<div class="card-deck">
     @foreach (var item in Model.Articles)
     {
         <div class="card">
@@ -13,9 +16,9 @@
                     @item.Description
                 </p>
                 <p class="card-text"><small class="text-muted">@item.Reporter.FisrtName @item.Reporter.LastName</small></p>
-                @if (item.IsConfrime == true)
+                @if (item.IsConfrim == true)
                 {
-                    <p class="btn btn-outline-secondary">تایید شده</p>
+                    <p class="btn btn-outline-secondary disabled">تایید شده</p>
                 }else
                 {
                     <a asp-route-id="@item.Id" asp-page-handler="Confrim" class="btn btn-outline-success">در انتظار تایید</a>
@@ -23,8 +26,5 @@
             </div>
         </div>
     }
-   @*  }else
-    {
-    <h1>مقاله ای موجود نیست</h1>
-    } *@
 </div>
+}

@@ -17,7 +17,10 @@ public class ArticleRepository
     public Article GetArticle(int id)
     {
 
-        var article = context.Article.FirstOrDefault(x => x.Id == id);
+        var article = context.Article
+            .Include(a=>a.Category)
+            .Include(a=>a.Comments)
+            .FirstOrDefault(x => x.Id == id);
         return article;
     }
 

@@ -1,5 +1,6 @@
 ﻿using CW18.Configuration;
 using CW18.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace CW18.Ripository;
 
@@ -9,7 +10,7 @@ public class CategoryRipository
 
     public List<Category> GetCategories()
     {
-        var categories = context.Category.ToList();
+        var categories = context.Category.Include(c => c.Articles).ToList() ;
         return categories;
     }
 

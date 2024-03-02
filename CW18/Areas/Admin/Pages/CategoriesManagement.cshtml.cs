@@ -11,23 +11,19 @@ public class CategoriesManagementModel : PageModel
     CategoryRipository categoryRipository=new CategoryRipository();
     [BindProperty]
     public List<Category> CategoriesList { get; set; }=new List<Category>();
-    [BindProperty]
-    public Admin loginAdmin { get; set; } = StaticDatabase.Admin;
+    public Admin OnlineAdmin { get; set; } = StaticDatabase.Admin;
     public void OnGet()
     {
-        if (loginAdmin != null)
-        {
-            TempData["true"] = "true";
-        }
-        else
-        {
-            TempData["true"] = "false";
-        }
         CategoriesList=categoryRipository.GetCategories();
+        if(OnlineAdmin==null)
+        {
+            TempData["False"] = "False";
+        }
     }
 
-    public void OnGetDelete(int id) 
+    public IActionResult OnGetDelete(int id) 
     {
         categoryRipository.DeleteCategory(id);
+        return RedirectToAction("OnGet");
     }
 }

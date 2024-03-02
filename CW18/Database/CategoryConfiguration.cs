@@ -15,7 +15,7 @@ namespace CW18.Configuration
             builder.HasMany(a => a.Articles)
             .WithOne(a => a.Category)
             .HasForeignKey(a => a.CategoryId);
-            //builder.Property(r => r.ArticleId).IsRequired(false);
+
         }
     }
 }

@@ -15,9 +15,10 @@ public class Article
     public int ReporterId { get; set; }
     [DisplayName("خبرنگار")]
     public Reporter Reporter { get; set; }
-    public bool IsConfrime { get; set; }   
+    public bool IsConfrim { get; set; }   
     [DisplayName("دسته بندی")]
     public Category Category { get; set; }
     public int CategoryId { get; set; }
     public int VisitCount { get; set; }
+    public List<Comment> Comments { get; set;}
 }

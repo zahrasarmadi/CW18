@@ -16,8 +16,8 @@ public class ArticleConfiguration : IEntityTypeConfiguration<Article>
         builder.Property(a => a.Id).IsRequired();
         builder.Property(a => a.Id).ValueGeneratedOnAdd();
         builder.Property(a => a.Title).IsRequired().HasMaxLength(100);
-        builder.Property(a=>a.Description).IsRequired().HasMaxLength(500);
+        builder.Property(a => a.Description).IsRequired().HasMaxLength(500);
         builder.Property(a => a.Image).IsRequired().HasMaxLength(500);
-        builder.Property(a => a.IsConfrime).HasDefaultValue(false).IsRequired();
+        builder.Property(a => a.IsConfrim).HasDefaultValue(false).IsRequired();
     }
 }

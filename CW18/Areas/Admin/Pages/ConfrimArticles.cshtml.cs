@@ -12,27 +12,22 @@ public class ConfrimArticlesModel : PageModel
 
     ArticleRepository ArticleRepository = new ArticleRepository();
     [BindProperty]
-    public Admin loginAdmin { get; set; } = StaticDatabase.Admin;
+    //public Admin loginAdmin { get; set; } = StaticDatabase.Admin;
 
-    [BindProperty]
     public List<Article> Articles { get; set; } = new List<Article>();
+    public Admin OnlineAdmin { get; set; } = StaticDatabase.Admin;
     public void OnGet()
     {
-        if (loginAdmin != null)
-        {
-            TempData["true"] = "true";
-        }
-        else
-        {
-            TempData["true"] = "false";
-        }
-
         Articles = ArticleRepository.GetListArticles();
+        if (OnlineAdmin == null)
+        {
+            TempData["False"] = "False";
+        }
     }
 
     public IActionResult OnGetConfrim(int id)
     {
         adminRipository.ConfrimArticle(id);
-        return Page();
+        return RedirectToAction("OnGet");
     }
 }

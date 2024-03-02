@@ -14,9 +14,10 @@ public class EditCategoryModel : PageModel
     {
         Category=categoryRipository.GetCategory(id);
     }
-    public void OnPost(Category category)
+    public IActionResult OnPost(Category category)
     {
         categoryRipository.UpdateCategory(category);
+        return RedirectToPage("CategoriesManagement");
     }
 
 

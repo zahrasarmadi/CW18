@@ -1,7 +1,11 @@
 ﻿@page
 @model CW18.Areas.ReporterArea.Pages.AddArticleModel
-@{
+
+@if (TempData["False"]=="False")
+{
+    <h1>لاگین نیستید</h1>
 }
+else{
 <h1>افزودن خبر</h1>
 <form method="post" enctype="multipart/form-data">
     <div class="form-row">
@@ -30,3 +34,4 @@
     </div>
     <button type="submit" class="btn btn-primary">ثبت مقاله</button>
 </form>
+}

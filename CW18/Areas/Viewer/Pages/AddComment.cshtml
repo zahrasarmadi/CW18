@@ -1,0 +1,25 @@
+﻿@page
+@model CW18.Areas.Viewer.Pages.AddCommentModel
+<h1>ثبت کامنت</h1>
+<form method="post">
+    <div class="form-row">
+        <div class="form-group p-3">
+            <label asp-for="@Model.Comment.UserName"></label>
+            <input  class="form-control pt-1" asp-for="@Model.Comment.UserName">
+        </div>
+        <div class="form-group p-3">
+            <label asp-for="@Model.Comment.Title"></label>
+            <input class="form-control pt-1" asp-for="@Model.Comment.Title">
+        </div>
+        <div class="form-group p-3">
+            <label asp-for="@Model.Comment.Description"></label>
+            <textarea  class="form-control pt-1" asp-for="@Model.Comment.Description"></textarea>
+        </div>
+        <div class="form-group p-3">  
+            <input hidden class="form-control pt-1" value="@TempData["ArticleId"]" asp-for="@Model.Comment.ArticleId">
+            <input hidden class="form-control pt-1" value="@TempData["Article"]" asp-for="@Model.Comment.Article">
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">ثبت </button>
+</form>

@@ -1,0 +1,49 @@
+﻿@page
+@using CW18.Areas.Viewer
+@model CW18.Areas.Viewer.Pages.SelectedArticleModel
+
+<div class="card mb-3">
+    <img class="card-img-top" src="@Model.Article.Image" alt="">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Article.Title</h5>
+        <p class="card-text">@Model.Article.Description</p>
+        <p class="card-text"><small class="text-muted">تعداد بازدید ازین مقاله @Model.Article.VisitCount</small></p>
+        <p class="card-text"><small class="text-muted">دسته بندی @Model.Article.Category.Name</small></p>
+        <a class="btn btn-outline-success" asp-page="AddComment" asp-area="Viewer" asp-route-id="@Model.Article.Id">افزودن کامنت</a>
+        <section style="background-color: #e7effd;">
+
+            @foreach (var item in Model.Article.Comments)
+            {
+                @if (item.IsConfrim == true)
+                {
+                    <div class="container my-5 py-5 text-dark">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-11 col-lg-9 col-xl-7">
+                                <div class="d-flex flex-start mb-4">
+
+                                    <div class="card w-100">
+                                        <div class="card-body p-4">
+                                            <div class="">
+                                                <h4>@item.UserName</h4>
+                                                <h5>@item.Title</h5>
+                                                <p>
+                                                    @item.Description
+                                                </p>
+                                                    <p>  <a asp-page-handler="Like" asp-route-id="@item.Id" style="text-decoration :none;" class="link-muted">لایک @item.Like</a></p>
+
+                                                  <p>  <a asp-page-handler="DisLike" asp-route-id="@item.Id" style="text-decoration :none;" class="link-muted">دیس لایک @item.DisLike</a>
+                                                </p>
+                                            </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                }
+            }
+        </section>
+    </div>
+</div>

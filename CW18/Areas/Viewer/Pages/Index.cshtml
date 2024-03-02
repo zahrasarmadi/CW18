@@ -1,0 +1,25 @@
+﻿@page
+@using CW18.Areas.Viewer
+@model CW18.Areas.Viewer.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">خوش آمدید</h1>
+    <p>پنل کاربران</p>
+    <h1>مقاله ها</h1>
+    <div class="card-deck">
+        @foreach (var item in Model.ArticlesList)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <img src="@item.Image" alt="">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text"><small class="text-muted">@item.Reporter.FisrtName @item.Reporter.LastName</small></p>
+                    <a asp-page="SelectedArticle" asp-route-id="@item.Id" class="btn btn-outline-info">بیشتر...</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

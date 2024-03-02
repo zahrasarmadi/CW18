@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CW18.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240229062259_init")]
+    [Migration("20240301125338_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -83,7 +83,7 @@ namespace CW18.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("IsConfrime")
+                    b.Property<bool>("IsConfrim")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
@@ -116,9 +116,6 @@ namespace CW18.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -127,6 +124,52 @@ namespace CW18.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories", (string)null);
+                });
+
+            modelBuilder.Entity("CW18.Model.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("DisLike")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<bool>("IsConfrim")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("Like")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("UserName")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("CW18.Model.Reporter", b =>
@@ -184,6 +227,22 @@ namespace CW18.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Reporter");
+                });
+
+            modelBuilder.Entity("CW18.Model.Comment", b =>
+                {
+                    b.HasOne("CW18.Model.Article", "Article")
+                        .WithMany("Comments")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+                });
+
+            modelBuilder.Entity("CW18.Model.Article", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("CW18.Model.Category", b =>
