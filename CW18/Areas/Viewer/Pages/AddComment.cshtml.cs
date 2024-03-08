@@ -7,7 +7,7 @@ namespace CW18.Areas.Viewer.Pages;
 
 public class AddCommentModel : PageModel
 {
-    CommentRipository commentRipository = new CommentRipository();
+    CommentRepository commentRipository = new CommentRepository();
     ArticleRepository articleRepository = new ArticleRepository();  
 
     [BindProperty]

@@ -10,11 +10,10 @@ namespace CW18.Areas.AdminArea.Pages
         [BindProperty]
         public CategoryViewModel Category { get; set; }
 
-        CategoryRipository categoryRipository=new CategoryRipository();
-        public void OnGet()
-        {
+        CategoryRepository categoryRipository=new CategoryRepository();
 
-        }
+        public void OnGet() { }
+
         public IActionResult OnPost(CategoryViewModel category)
         {
             var ccat = new Category()

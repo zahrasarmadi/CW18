@@ -7,7 +7,7 @@ namespace CW18.Areas.AdminArea.Pages;
 
 public class EditCategoryModel : PageModel
 {
-    CategoryRipository categoryRipository=new CategoryRipository();
+    CategoryRepository categoryRipository=new CategoryRepository();
     [BindProperty]
     public Category Category { get; set; }=new Category();
     public void OnGet(int id)

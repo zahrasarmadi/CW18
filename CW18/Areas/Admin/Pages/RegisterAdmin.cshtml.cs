@@ -11,7 +11,7 @@ public class RegisterAdminrModel : PageModel
     [BindProperty]
     public RegsiterViewModel AdminViewModel { get; set; }
 
-    AdminRipository adminRipository= new AdminRipository();
+    AdminRepository adminRipository= new AdminRepository();
     public void OnGet()
     {
 

@@ -12,7 +12,7 @@ public class LoginAdminModel : PageModel
     public Admin Admin { get; set; }
     [BindProperty]
     public LoginViewModel Login { get; set; }
-    AdminRipository adminRipository=new AdminRipository();
+    AdminRepository adminRipository=new AdminRepository();
     public void OnGet()
     {
     }

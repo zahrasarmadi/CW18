@@ -8,7 +8,7 @@ namespace CW18.Areas.AdminArea.Pages;
 
 public class ConfrimArticlesModel : PageModel
 {
-    AdminRipository adminRipository = new AdminRipository();
+    AdminRepository adminRipository = new AdminRepository();
 
     ArticleRepository ArticleRepository = new ArticleRepository();
     [BindProperty]

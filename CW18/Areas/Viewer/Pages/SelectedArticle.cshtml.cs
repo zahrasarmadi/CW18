@@ -12,27 +12,27 @@ namespace CW18.Areas.Viewer.Pages
 
         ArticleRepository articleRepo = new ArticleRepository();
 
-        CommentRipository commentRipository= new CommentRipository();
+        CommentRepository commentRipository= new CommentRepository();
+
         public void OnGet(int id)
         {
             ViewData["id"] = id;
             Article = articleRepo.GetArticle(id);
             articleRepo.VisitCounter(id);
         }
+
         public IActionResult OnGetDisLike(int id)
         {
             commentRipository.DisLikeCounter(id);
-            var res = commentRipository.GetComment(id);
-            var res2 = res.ArticleId;
-            return RedirectToPage("SelectedArticle", res);
+            var result = commentRipository.GetComment(id);
+            return RedirectToPage("SelectedArticle", result);
         }
 
         public IActionResult OnGetLike(int id)
         {
             commentRipository.LikeCounter(id);
-            var res = commentRipository.GetComment(id);
-            var res2 = res.ArticleId;
-            return RedirectToPage("SelectedArticle", res);
+            var result = commentRipository.GetComment(id);
+            return RedirectToPage("SelectedArticle", result);
         }
     }
 }

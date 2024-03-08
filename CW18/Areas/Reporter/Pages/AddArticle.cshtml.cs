@@ -19,7 +19,7 @@ public class AddArticleModel : PageModel
 
     ArticleRepository articleRipo = new ArticleRepository();
 
-    CategoryRipository categoryRipo = new CategoryRipository();
+    CategoryRepository categoryRipo = new CategoryRepository();
     public Reporter OnlineReporter { get; set; } = StaticDatabase.Reporter;
     public void OnGet()
     {

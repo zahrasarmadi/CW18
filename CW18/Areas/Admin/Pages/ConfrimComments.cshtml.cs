@@ -8,13 +8,16 @@ namespace CW18.Areas.AdminArea.Pages
 {
     public class ConfrimCommentsModel : PageModel
     {
-        AdminRipository adminRipository = new AdminRipository();
+        AdminRepository adminRipository = new AdminRepository();
 
-        CommentRipository commentRepository = new CommentRipository();
+        CommentRepository commentRepository = new CommentRepository();
 
         [BindProperty]
         public List<Comment> Comments { get; set; } = new List<Comment>();
+
+        [BindProperty]
         public Admin OnlineAdmin { get; set; } = StaticDatabase.Admin;
+
         public void OnGet()
         {
             Comments = commentRepository.GetCommentsLit();
